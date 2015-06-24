@@ -1,6 +1,6 @@
 # Laravel Internal API Consumption
 
-https://travis-ci.org/esbenp/laravel-api-consumer.svg
+[![Build Status](https://travis-ci.org/esbenp/laravel-api-consumer.svg)](https://travis-ci.org/esbenp/laravel-api-consumer)
 
 ## Installation
 
