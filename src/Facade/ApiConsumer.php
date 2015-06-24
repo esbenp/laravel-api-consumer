@@ -1,6 +1,8 @@
 <?php
 
-namespace Illuminate\Support\Facades;
+namespace Optimus\ApiConsumer\Facade;
+
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \Optimus\ApiConsumer\Router
