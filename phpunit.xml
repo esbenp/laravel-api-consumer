@@ -9,13 +9,14 @@
      processIsolation="false"
      stopOnFailure="false"
      syntaxCheck="false">
-
+     <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
     <filter>
         <whitelist>
             <directory>./src/</directory>
         </whitelist>
     </filter>
-
     <testsuites>
         <testsuite name="Optimus\ApiConsumer Test Suite">
             <directory suffix="Test.php">./tests/</directory>
