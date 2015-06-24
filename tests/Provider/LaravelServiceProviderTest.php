@@ -10,11 +10,7 @@ class LaravelServiceProviderTest extends Orchestra\Testbench\TestCase {
 
         $appMock->shouldReceive('bindShared')->with(
             'apiconsumer',
-            m::on(function($closure){
-                var_dump($closure);
-                var_dump("YOP");
-                return true;
-            })
+            m::type('Closure')
         );
 
         $provider = $this->app->make('Optimus\ApiConsumer\Provider\LaravelServiceProvider', [
