@@ -1,0 +1,23 @@
+{
+    "name": "optimus/api-consumer",
+    "require": {
+        "laravel/framework": "~5.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.7",
+        "orchestra/testbench": "~3.0",
+        "mockery/mockery": "0.9.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Optimus\\ApiConsumer\\": "src/"
+        }
+    },
+    "license": "Apache",
+    "authors": [
+        {
+            "name": "Esben Petersen",
+            "email": "esbenspetersen@gmail.com"
+        }
+    ]
+}
