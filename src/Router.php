@@ -116,7 +116,7 @@ class Router {
         // after we've completed our internal request.
         $currentRequest = $this->request->instance()->duplicate();
 
-        $headers = $this->overrideHeaders($currentRequest->headers->all(), $headers);
+        $headers = $this->overrideHeaders($currentRequest->server->getHeaders(), $headers);
 
         if ($this->disableMiddleware) {
             $this->app->instance('middleware.disable', true);
@@ -145,6 +145,7 @@ class Router {
 
     private function overrideHeaders(array $default, array $headers)
     {
+        $headers = $this->transformHeadersToUppercaseUnderscoreType($headers);
         return array_merge($default, $headers);
     }
 
@@ -192,6 +193,19 @@ class Router {
         return $this->request->create($uri, $method, $data, [], [], $server, $content);
     }
 
+    private function transformHeadersToUppercaseUnderscoreType($headers)
+    {
+        $transformed = [];
+
+        foreach($headers as $headerType => $headerValue) {
+            $headerType = strtoupper(str_replace('-', '_', $headerType));
+
+            $transformed[$headerType] = $headerValue;
+        }
+
+        return $transformed;
+    }
+
     /**
      * https://github.com/symfony/symfony/issues/5074
      *
@@ -203,7 +217,7 @@ class Router {
         $server = [];
 
         foreach($headers as $headerType => $headerValue){
-            $headerType = 'HTTP_' . strtoupper(str_replace('-', '_', $headerType));
+            $headerType = 'HTTP_' . $headerType;
 
             $server[$headerType] = $headerValue;
         }
