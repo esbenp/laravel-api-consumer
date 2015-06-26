@@ -16,6 +16,8 @@ class Router {
 
     private $request;
 
+    private $disableMiddleware = false;
+
     /**
      * @param \Illuminate\Foundation\Application $app
      * @param \Illuminate\Http\Request $request,
@@ -29,11 +31,11 @@ class Router {
     }
 
     /**
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     public function get()
     {
@@ -41,11 +43,11 @@ class Router {
     }
 
     /**
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     public function post()
     {
@@ -53,11 +55,11 @@ class Router {
     }
 
     /**
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     public function put()
     {
@@ -65,11 +67,11 @@ class Router {
     }
 
     /**
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     public function delete()
     {
@@ -78,7 +80,7 @@ class Router {
 
     /**
      * @param  array $requests An array of requests
-     * @return array          
+     * @return array
      */
     public function batchRequest(array $requests)
     {
@@ -92,7 +94,7 @@ class Router {
     /**
      * @param  string $method
      * @param  array  $args
-     * @return \Illuminate\Http\Response          
+     * @return \Illuminate\Http\Response
      */
     public function quickCall($method, array $args)
     {
@@ -102,19 +104,27 @@ class Router {
 
     /**
      * @param  string $method
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     public function singleRequest($method, $uri, array $data = [], array $headers = [], $content = null)
     {
-        // Save the current request so we can reset the router back to it 
+        // Save the current request so we can reset the router back to it
         // after we've completed our internal request.
         $currentRequest = $this->request->instance()->duplicate();
 
+        if ($this->disableMiddleware) {
+            $this->app->instance('middleware.disable', true);
+        }
+
         $response = $this->request($method, $uri, $data, $headers, $content);
+
+        if ($this->disableMiddleware) {
+            $this->app->instance('middleware.disable', false);
+        }
 
         // Once the request has completed we reset the currentRequest of the router
         // to match the original request.
@@ -131,13 +141,23 @@ class Router {
         return $response;
     }
 
+    public function enableMiddleware()
+    {
+        $this->disableMiddleware = false;
+    }
+
+    public function disableMiddleware()
+    {
+        $this->disableMiddleware = true;
+    }
+
     /**
      * @param  string $method
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Response          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Response
      */
     private function request($method, $uri, array $data = [], array $headers = [], $content = null)
     {
@@ -152,11 +172,11 @@ class Router {
 
     /**
      * @param  string $method
-     * @param  string $uri     
-     * @param  array  $data    
-     * @param  array  $headers 
-     * @param  string $content 
-     * @return \Illuminate\Http\Request          
+     * @param  string $uri
+     * @param  array  $data
+     * @param  array  $headers
+     * @param  string $content
+     * @return \Illuminate\Http\Request
      */
     private function createRequest($method, $uri, array $data = [], array $headers = [], $content = null)
     {
@@ -167,9 +187,9 @@ class Router {
 
     /**
      * https://github.com/symfony/symfony/issues/5074
-     * 
+     *
      * @param  array $headers
-     * @return array        
+     * @return array
      */
     private function transformHeadersToServerVariables($headers)
     {
