@@ -116,6 +116,8 @@ class Router {
         // after we've completed our internal request.
         $currentRequest = $this->request->instance()->duplicate();
 
+        $headers = $this->overrideHeaders($currentRequest->headers->all(), $headers);
+
         if ($this->disableMiddleware) {
             $this->app->instance('middleware.disable', true);
         }
@@ -139,6 +141,11 @@ class Router {
         );
 
         return $response;
+    }
+
+    private function overrideHeaders(array $default, array $headers)
+    {
+        return array_merge($default, $headers);
     }
 
     public function enableMiddleware()
