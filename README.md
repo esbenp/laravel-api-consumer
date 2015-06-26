@@ -5,5 +5,5 @@
 ## Installation
 
 ```bash
-composer require optimus/api-consumer 0.1.*
+composer require optimus/api-consumer 0.2.*
 ```
