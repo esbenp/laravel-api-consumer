@@ -8,7 +8,7 @@ class LaravelServiceProviderTest extends Orchestra\Testbench\TestCase {
     {
         $appMock = m::mock('Illuminate\Foundation\Application');
 
-        $appMock->shouldReceive('bindShared')->with(
+        $appMock->shouldReceive('singleton')->with(
             'apiconsumer',
             m::type('Closure')
         );
