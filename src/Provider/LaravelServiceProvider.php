@@ -14,7 +14,7 @@ class LaravelServiceProvider extends BaseProvider {
 
     public function boot()
     {
-        $this->app->bindShared('apiconsumer', function(){
+        $this->app->singleton('apiconsumer', function(){
             $app = app();
 
             return new Router($app, $app['request'], $app['router']);
