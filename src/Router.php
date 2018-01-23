@@ -137,7 +137,7 @@ class Router {
             $currentRequest->cookies->all(),
             $currentRequest->files->all(),
             $currentRequest->server->all(),
-            $currentRequest->content
+            $currentRequest->getContent()
         );
 
         return $response;
