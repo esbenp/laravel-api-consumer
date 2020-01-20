@@ -1,6 +1,7 @@
 <?php
 
 use Mockery as m;
+use Optimus\ApiConsumer\Provider\LaravelServiceProvider;
 
 class LaravelServiceProviderTest extends Orchestra\Testbench\TestCase {
 
