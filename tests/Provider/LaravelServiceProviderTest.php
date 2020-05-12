@@ -14,7 +14,7 @@ class LaravelServiceProviderTest extends Orchestra\Testbench\TestCase {
         );
 
         $provider = $this->app->make('Optimus\ApiConsumer\Provider\LaravelServiceProvider', [
-            $appMock
+            'app' => $appMock
         ]);
 
         $this->assertNull($provider->register());

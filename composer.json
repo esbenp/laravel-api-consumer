@@ -1,13 +1,13 @@
 {
     "name": "optimus/api-consumer",
     "require": {
-        "laravel/framework": "~5.2"
+        "laravel/framework": "~6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.7",
-        "orchestra/testbench": "~3.0",
-        "mockery/mockery": "0.9.*",
-        "satooshi/php-coveralls": "dev-master@dev"
+        "phpunit/phpunit": "~8.0",
+        "orchestra/testbench": "4.*",
+        "mockery/mockery": "1.3.*",
+        "php-coveralls/php-coveralls": "2.2.*"
     },
     "autoload": {
         "psr-4": {
