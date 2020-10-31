@@ -12,7 +12,7 @@ class RouterTest extends Orchestra\Testbench\TestCase {
 
     private $routerMock;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -21,7 +21,7 @@ class RouterTest extends Orchestra\Testbench\TestCase {
         $this->routerMock = m::mock("Illuminate\Routing\Router");
     }
 
-    public function tearDown()
+    public function tearDown() : void
     {
         parent::tearDown();
 
