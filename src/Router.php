@@ -189,6 +189,7 @@ class Router {
     private function createRequest($method, $uri, array $data = [], array $headers = [], $content = null)
     {
         $server = $this->transformHeadersToServerVariables($headers);
+        $server['REMOTE_ADDR'] = $this->request->getClientIp();
 
         return $this->request->create($uri, $method, $data, [], [], $server, $content);
     }
