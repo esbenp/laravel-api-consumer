@@ -22,5 +22,12 @@
             "name": "Esben Petersen",
             "email": "esbenspetersen@gmail.com"
         }
-    ]
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Optimus\\ApiConsumer\\Provider\\LaravelServiceProvider"
+            ]
+        }
+    }
 }
