@@ -1,33 +1,33 @@
 {
-    "name": "optimus/api-consumer",
-    "require": {
-        "laravel/framework": "~6.0|~7.0|~8.0|~9.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~8.0",
-        "orchestra/testbench": "4.*",
-        "mockery/mockery": "1.3.*",
-        "php-coveralls/php-coveralls": "2.2.*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Optimus\\ApiConsumer\\": "src/"
-        }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "license": "Apache",
-    "authors": [
-        {
-            "name": "Esben Petersen",
-            "email": "esbenspetersen@gmail.com"
-        }
-    ],
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Optimus\\ApiConsumer\\Provider\\LaravelServiceProvider"
-            ]
-        }
+  "name": "optimus/api-consumer",
+  "require": {
+    "laravel/framework": "~6.0|~7.0|~8.0|~9.0|~10.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~8.0",
+    "orchestra/testbench": "4.*",
+    "mockery/mockery": "1.3.*",
+    "php-coveralls/php-coveralls": "2.2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Optimus\\ApiConsumer\\": "src/"
     }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "Apache",
+  "authors": [
+    {
+      "name": "Esben Petersen",
+      "email": "esbenspetersen@gmail.com"
+    }
+  ],
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Optimus\\ApiConsumer\\Provider\\LaravelServiceProvider"
+      ]
+    }
+  }
 }
